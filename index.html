@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskFlow | Professional Task Management</title>
+    <title>TaskFlow | Professional Task Manager</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -20,30 +20,32 @@
 
         <main class="main-content">
             <header>
-                <h1>My Tasks</h1>
+                <h1>My Dashboard</h1>
                 <div class="sort-controls">
-                    <select id="sortSelect" onchange="sortTasks()">
-                        <option value="date">Sort by Date</option>
-                        <option value="priority">Sort by Priority</option>
+                    <label>Sort by:</label>
+                    <select id="sortSelect" onchange="renderTasks()">
+                        <option value="date">Due Date</option>
+                        <option value="priority">Priority Level</option>
                     </select>
                 </div>
             </header>
 
             <section class="task-input-card">
-                <input type="text" id="taskName" placeholder="What needs to be done?">
+                <input type="text" id="taskName" placeholder="Enter task name...">
                 <input type="date" id="taskDate">
                 <select id="taskPriority">
-                    <option value="1">Low</option>
-                    <option value="2">Medium</option>
-                    <option value="3">High</option>
+                    <option value="1">Low Priority</option>
+                    <option value="2">Medium Priority</option>
+                    <option value="3">High Priority</option>
                 </select>
-                <button id="addTaskBtn" onclick="addTask()">Add Task</button>
+                <button id="addTaskBtn" onclick="addTask()">+ Add Task</button>
             </section>
 
             <ul id="taskList" class="task-list">
                 </ul>
         </main>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
