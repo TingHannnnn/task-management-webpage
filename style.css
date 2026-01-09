@@ -1,74 +1,149 @@
 :root {
-    --primary: #2563eb;
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --text: #1e293b;
-    --border: #e2e8f0;
+    /* New Vibrant Color Palette */
+    --primary: #6366f1; /* Indigo */
+    --primary-hover: #4f46e5;
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-dim: #94a3b8;
+    
+    /* Priority Colors */
+    --low: #10b981;    /* Green */
+    --medium: #f59e0b; /* Orange */
+    --high: #ef4444;   /* Red */
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-main);
     margin: 0;
+    min-height: 100vh;
 }
 
 .app-container {
     display: flex;
-    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* Sidebar Styling */
 .sidebar {
-    width: 250px;
-    background: #fff;
-    border-right: 1px solid var(--border);
+    width: 260px;
     padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    margin-right: 20px;
+}
+
+.sidebar h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.filters button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.filters button:hover, .filters button.active {
+    background: var(--primary);
+    color: white;
 }
 
 /* Main Content Area */
 .main-content {
     flex: 1;
-    padding: 2rem 4rem;
-    max-width: 1000px;
 }
 
+header h1 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Input Card Styling */
 .task-input-card {
-    background: var(--card);
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
     display: flex;
-    gap: 10px;
-    margin-bottom: 2rem;
+    gap: 15px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
 }
 
-input, select, button {
-    padding: 0.6rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    outline: none;
+input, select {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
 }
 
 button#addTaskBtn {
     background: var(--primary);
     color: white;
+    font-weight: bold;
     border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: transform 0.2s;
+}
+
+button#addTaskBtn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
 }
 
 /* Task Item Styling */
 .task-item {
-    background: white;
-    margin-bottom: 10px;
-    padding: 1rem;
-    border-radius: 8px;
+    background: var(--card-bg);
+    margin-bottom: 15px;
+    padding: 1.2rem;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-left: 5px solid #cbd5e1;
+    border: 1px solid var(--glass-border);
+    transition: 0.3s;
 }
 
-.task-item.priority-3 { border-left-color: #ef4444; } /* High */
-.task-item.completed { opacity: 0.6; text-decoration: line-through; }
+.task-item:hover {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.task-item.priority-1 { border-left: 5px solid var(--low); }
+.task-item.priority-2 { border-left: 5px solid var(--medium); }
+.task-item.priority-3 { border-left: 5px solid var(--high); }
+
+.task-item.completed {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+.task-item button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    margin-left: 5px;
+    padding: 5px 12px;
+    cursor: pointer;
