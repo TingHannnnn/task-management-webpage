@@ -2,35 +2,34 @@
 
 A sleek, professional, and high-performance task management dashboard built with vanilla web technologies. This project was designed with a **"Dark Mode Glassmorphism"** aesthetic for a modern user experience.
 
-
-
 ## ✨ Features
 
-* **CRUD Operations:** Add, view, and delete tasks seamlessly.
-* **Priority System:** Visual indicators for Low, Medium, and High priority tasks.
-* **Smart Filtering:** Filter tasks by completion status or priority level.
-* **Due Date Tracking:** Keep track of deadlines with a clean date interface.
-* **Responsive Design:** Optimized for a professional desktop experience.
+* **Full CRUD Operations:** Add, view, edit, and delete tasks seamlessly.
+* **Priority System:** Visual indicators (Red/Orange/Green) for High, Medium, and Low priorities.
+* **Advanced Filtering:** Filter tasks instantly by "High Priority" or "Completed" status.
+* **Smart Sorting:** Organize your list by Due Date or Priority level.
+* **Mark as Complete:** Toggle tasks as finished with a visual strike-through effect.
 
-## 🛠️ Tech Stack
+## 🛠️ Technique Used
 
-* **HTML5:** Semantic structure.
-* **CSS3:** Custom properties (variables), Flexbox, and Glassmorphism effects.
-* **JavaScript (ES6):** Dynamic DOM manipulation and task logic.
-* **GitHub Pages:** Automated deployment and hosting.
+* **HTML5:** Used semantic tags (`<aside>`, `<main>`) for better structure.
+* **CSS3:** Implemented **Glassmorphism**, Custom Variables, and Flexbox for a modern UI.
+* **JavaScript (ES6+):** * **Arrays:** Used for data storage.
+    * **Higher-Order Functions:** Used `.filter()` for tabs and `.sort()` for organization.
+    * **DOM Manipulation:** Used to dynamically update the list without refreshing the page.
 
 ## 🚀 How to Use
 
-1. **Add a Task:** Enter the task name, select a deadline and priority, then click "Add Task".
-2. **Complete a Task:** Click the "Done" button to mark a task as finished (it will fade out).
-3. **Filter:** Use the sidebar buttons to view specific categories like "High Priority".
-4. **Delete:** Remove tasks using the delete button once they are no longer needed.
+1.  **Add a Task:** Enter the task name, select a date and priority, then click "+ Add Task".
+2.  **Edit/Delete:** Use the pencil icon (✎) to rename a task or the red X (✘) to remove it.
+3.  **Filter:** Click the sidebar buttons to switch between viewing all tasks or specific categories.
+4.  **Sort:** Use the dropdown menu at the top right to change the order of your tasks.
 
 ## 📂 Project Structure
 
 ```text
 task-management-webpage/
-├── index.html    # Main structure and entry point
-├── style.css     # Dark mode & glassmorphism styling
-├── script.js    # Logic for CRUD and filtering
+├── index.html    # Layout and Sidebar structure
+├── style.css     # Dark mode, Glassmorphism & Priority colors
+├── script.js    # CRUD logic, Filtering, and Sorting functions
 └── README.md     # Project documentation
