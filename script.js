@@ -1,33 +1,32 @@
 let tasks = [];
+let currentFilter = 'all'; // Keep track of what we are currently viewing
 
-function addTask() {
-    const name = document.getElementById('taskName').value;
-    const date = document.getElementById('taskDate').value;
-    const priority = document.getElementById('taskPriority').value;
-
-    if (!name || !date) return alert("Please fill in all fields");
-
-    const newTask = {
-        id: Date.now(),
-        name,
-        date,
-        priority: parseInt(priority),
-        completed: false
-    };
-
-    tasks.push(newTask);
+function filterTasks(filterType) {
+    currentFilter = filterType;
+    
+    // Update the UI to show which button is active
+    const buttons = document.querySelectorAll('.filters button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // This finds the button you clicked and adds the 'active' style
+    event.currentTarget.classList.add('active');
+    
     renderTasks();
-    clearInputs();
 }
 
-function renderTasks(filter = 'all') {
+function renderTasks() {
     const taskList = document.getElementById('taskList');
     taskList.innerHTML = '';
 
+    // Logic for filtering
     let filteredTasks = tasks;
-    if (filter === 'high') filteredTasks = tasks.filter(t => t.priority === 3);
-    if (filter === 'completed') filteredTasks = tasks.filter(t => t.completed);
+    if (currentFilter === 'high') {
+        filteredTasks = tasks.filter(t => t.priority === 3);
+    } else if (currentFilter === 'completed') {
+        filteredTasks = tasks.filter(t => t.completed === true);
+    }
 
+    // Loop through and display
     filteredTasks.forEach(task => {
         const li = document.createElement('li');
         li.className = `task-item priority-${task.priority} ${task.completed ? 'completed' : ''}`;
@@ -37,29 +36,13 @@ function renderTasks(filter = 'all') {
                 <small>${task.date}</small>
             </div>
             <div>
-                <button onclick="toggleComplete(${task.id})">Done</button>
-                <button onclick="deleteTask(${task.id})">Delete</button>
+                <button onclick="toggleComplete(${task.id})">${task.completed ? 'Undo' : 'Done'}</button>
+                <button onclick="deleteTask(${task.id})" style="color: #ef4444;">Delete</button>
             </div>
         `;
         taskList.appendChild(li);
     });
 }
 
-function deleteTask(id) {
-    tasks = tasks.filter(task => task.id !== id);
-    renderTasks();
-}
-
-function toggleComplete(id) {
-    const task = tasks.find(t => t.id === id);
-    if (task) task.completed = !task.completed;
-    renderTasks();
-}
-
-function clearInputs() {
-    document.getElementById('taskName').value = '';
-    document.getElementById('taskDate').value = '';
-}
-
-// Initial render
-renderTasks();
+// Make sure your addTask and deleteTask functions call renderTasks() 
+// at the end so the screen updates!
