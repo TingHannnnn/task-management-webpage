@@ -1,48 +1,38 @@
-let tasks = [];
-let currentFilter = 'all'; // Keep track of what we are currently viewing
+// ADD TASK
+function addTask() {
+    const name = document.getElementById('taskName').value;
+    const date = document.getElementById('taskDate').value;
+    const priority = parseInt(document.getElementById('taskPriority').value);
 
-function filterTasks(filterType) {
-    currentFilter = filterType;
+    if (!name || !date) return alert("Fill in all fields!");
+
+    const newTask = {
+        id: Date.now(), // Unique ID
+        name: name,
+        date: date,
+        priority: priority,
+        completed: false
+    };
+
+    tasks.push(newTask);
+    renderTasks();
     
-    // Update the UI to show which button is active
-    const buttons = document.querySelectorAll('.filters button');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    
-    // This finds the button you clicked and adds the 'active' style
-    event.currentTarget.classList.add('active');
-    
+    // Clear the inputs
+    document.getElementById('taskName').value = '';
+    document.getElementById('taskDate').value = '';
+}
+
+// DELETE TASK
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== id);
     renderTasks();
 }
 
-function renderTasks() {
-    const taskList = document.getElementById('taskList');
-    taskList.innerHTML = '';
-
-    // Logic for filtering
-    let filteredTasks = tasks;
-    if (currentFilter === 'high') {
-        filteredTasks = tasks.filter(t => t.priority === 3);
-    } else if (currentFilter === 'completed') {
-        filteredTasks = tasks.filter(t => t.completed === true);
+// TOGGLE COMPLETE
+function toggleComplete(id) {
+    const task = tasks.find(t => t.id === id);
+    if (task) {
+        task.completed = !task.completed;
     }
-
-    // Loop through and display
-    filteredTasks.forEach(task => {
-        const li = document.createElement('li');
-        li.className = `task-item priority-${task.priority} ${task.completed ? 'completed' : ''}`;
-        li.innerHTML = `
-            <div>
-                <strong>${task.name}</strong> <br>
-                <small>${task.date}</small>
-            </div>
-            <div>
-                <button onclick="toggleComplete(${task.id})">${task.completed ? 'Undo' : 'Done'}</button>
-                <button onclick="deleteTask(${task.id})" style="color: #ef4444;">Delete</button>
-            </div>
-        `;
-        taskList.appendChild(li);
-    });
+    renderTasks();
 }
-
-// Make sure your addTask and deleteTask functions call renderTasks() 
-// at the end so the screen updates!
