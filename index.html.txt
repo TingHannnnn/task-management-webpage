@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow | Professional Task Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <h2>TaskFlow</h2>
+            <div class="filters">
+                <button onclick="filterTasks('all')" class="active">All Tasks</button>
+                <button onclick="filterTasks('high')">High Priority</button>
+                <button onclick="filterTasks('completed')">Completed</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>My Tasks</h1>
+                <div class="sort-controls">
+                    <select id="sortSelect" onchange="sortTasks()">
+                        <option value="date">Sort by Date</option>
+                        <option value="priority">Sort by Priority</option>
+                    </select>
+                </div>
+            </header>
+
+            <section class="task-input-card">
+                <input type="text" id="taskName" placeholder="What needs to be done?">
+                <input type="date" id="taskDate">
+                <select id="taskPriority">
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                </select>
+                <button id="addTaskBtn" onclick="addTask()">Add Task</button>
+            </section>
+
+            <ul id="taskList" class="task-list">
+                </ul>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
